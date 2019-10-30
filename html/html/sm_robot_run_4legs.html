@@ -1,0 +1,179 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Mechatronic Running Robot</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-16"><meta name="DC.source" content="sm_robot_run_4legs.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Mechatronic Running Robot</h1><!--introduction--><p>This model shows how a running or walking robot can be modeled to support system design. This four-legged robot has compliant legs that can store and re-release kinetic energy. As such it is biologically-inspired by an equestrian trotting gait. The model can be used to support selection of leg length, leg spring stiffness and actuators. An objective could be to minimise power consumption for a steady trot at some nominal average forward speed. The DC power supply is augmented with an ultracapacitor which is sized to smooth battery currents and store regenerative electrical energy.</p><p>For details on the design process, see <a href="matlab:web('sm_robot_run_limb_design.html');">Mechatronic Running Robot Limb Design</a></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Model</a></li><li><a href="#3">Leg LF Subsystem</a></li><li><a href="#4">Hip Actuator Subsystem</a></li><li><a href="#5">Power Supply Subsystem</a></li><li><a href="#6">Gait Phase Subsystem</a></li><li><a href="#7">Contact Forces Between Feet and Floor</a></li><li><a href="#9">Simulation Results from Simscape Logging</a></li></ul></div><h2 id="1">Model</h2><img vspace="5" hspace="5" src="sm_robot_run_4legs_01.png" style="width:547px;height:452px;" alt=""> <p><img vspace="5" hspace="5" src="sm_robot_run_4legs_mechExp_anim.gif" alt=""> </p><h2 id="3">Leg LF Subsystem</h2><p><a href="matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Leg%20LF','force');">Open Subsystem</a></p><img vspace="5" hspace="5" src="sm_robot_run_4legs_02.png" style="width:354px;height:455px;" alt=""> <h2 id="4">Hip Actuator Subsystem</h2><p><a href="matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Leg%20LF/Hip%20Actuator/Actuator','force');">Open Subsystem</a></p><img vspace="5" hspace="5" src="sm_robot_run_4legs_03.png" style="width:465px;height:264px;" alt=""> <h2 id="5">Power Supply Subsystem</h2><p><a href="matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Power%20Supply','force');">Open Subsystem</a></p><img vspace="5" hspace="5" src="sm_robot_run_4legs_04.png" style="width:510px;height:237px;" alt=""> <h2 id="6">Gait Phase Subsystem</h2><p><a href="matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Gait%20Phase','force');">Open Subsystem</a></p><img vspace="5" hspace="5" src="sm_robot_run_4legs_05.png" style="width:513px;height:328px;" alt=""> <h2 id="7">Contact Forces Between Feet and Floor</h2><p>Two methods are used for modeling the contact force between the foot and the floor.  One is used for the X-Y plane only, the other accommodates movement in any direction.  You can select the appropriate force for your test using a parameter in the leg subsystem mask.</p><p><b>Planar Contact Model</b></p><p>The planar variant of the contact force model assumes that the leg is moving in the positive global x direction and stays within the XY-plane. Simulink is used to model a spring-damper that connects the end of the leg to the floor at the exact location where it lands.  This spring-damper is deactivated when the foot leaves the floor.  This idealized form of a contact model is good for initial testing.</p><p><a href="matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Leg%20RR/Contact%20Force%20Model/Planar','force');">Open Subsystem</a></p><img vspace="5" hspace="5" src="sm_robot_run_4legs_06.png" style="width:420px;height:272px;" alt=""> <p><b>Six Degree of Freedom Contact Model</b></p><p>This variant of the contact force model assumes the end of the leg is a sphere and detects collision between the sphere and the surface of the floor. It models contact and friction force between the sphere and the plane.  It is valid for all six degrees of freedom.</p><p><a href="matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Leg%20RR/Contact%20Force%20Model/SixDOF','force');">Open Subsystem</a></p><img vspace="5" hspace="5" src="sm_robot_run_4legs_07.png" style="width:334px;height:390px;" alt=""> <h2 id="9">Simulation Results from Simscape Logging</h2><p>The plot below shows the current drawn by the motor and supplied by the battery as the robot runs.</p><img vspace="5" hspace="5" src="sm_robot_run_4legs_08.png" style="width:560px;height:420px;" alt=""> <p class="footer">Copyright 2012-2017 The MathWorks, Inc.<br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Mechatronic Running Robot
+% This model shows how a running or walking robot can be modeled to
+% support system design. This four-legged robot has compliant legs that can
+% store and re-release kinetic energy. As such it is biologically-inspired
+% by an equestrian trotting gait. The model can be used to support
+% selection of leg length, leg spring stiffness and actuators. An objective
+% could be to minimise power consumption for a steady trot at some nominal
+% average forward speed. The DC power supply is augmented with an
+% ultracapacitor which is sized to smooth battery currents and store
+% regenerative electrical energy.
+%
+% For details on the design process, see <matlab:web('sm_robot_run_limb_design.html'); Mechatronic Running Robot Limb Design>
+
+% Copyright 2012-2017 The MathWorks, Inc.
+
+
+%% Model
+load('sm_robot_run_4legs_param_def')
+
+open_system('sm_robot_run_4legs')
+
+set_param(find_system('sm_robot_run_4legs','FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
+
+%% 
+% <<sm_robot_run_4legs_mechExp_anim.gif>>
+
+%% Leg LF Subsystem
+%
+% <matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Leg%20LF','force'); Open Subsystem>
+
+set_param('sm_robot_run_4legs/Leg LF','LinkStatus','none')
+open_system('sm_robot_run_4legs/Leg LF','force')
+%% Hip Actuator Subsystem
+%
+% <matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Leg%20LF/Hip%20Actuator/Actuator','force'); Open Subsystem>
+
+set_param('sm_robot_run_4legs/Leg LF/Hip Actuator/Actuator','LinkStatus','none')
+open_system('sm_robot_run_4legs/Leg LF/Hip Actuator/Actuator','force')
+
+
+%% Power Supply Subsystem
+%
+% <matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Power%20Supply','force'); Open Subsystem>
+
+set_param('sm_robot_run_4legs/Power Supply','LinkStatus','none')
+open_system('sm_robot_run_4legs/Power Supply','force')
+
+%% Gait Phase Subsystem
+%
+% <matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Gait%20Phase','force'); Open Subsystem>
+
+set_param('sm_robot_run_4legs/Gait Phase','LinkStatus','none')
+open_system('sm_robot_run_4legs/Gait Phase','force')
+
+%% Contact Forces Between Feet and Floor
+%
+% Two methods are used for modeling the contact force between the foot and
+% the floor.  One is used for the X-Y plane only, the other accommodates
+% movement in any direction.  You can select the appropriate force for your
+% test using a parameter in the leg subsystem mask.
+%
+% *Planar Contact Model*
+%
+% The planar variant of the contact force model assumes that the leg is
+% moving in the positive global x direction and stays within the XY-plane.
+% Simulink is used to model a spring-damper that connects the end of the
+% leg to the floor at the exact location where it lands.  This
+% spring-damper is deactivated when the foot leaves the floor.  This
+% idealized form of a contact model is good for initial testing.
+%
+% <matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Leg%20RR/Contact%20Force%20Model/Planar','force'); Open Subsystem>
+
+set_param('sm_robot_run_4legs/Leg RR/','popup_contact_model','Planar');
+set_param('sm_robot_run_4legs/Leg RR','LinkStatus','none')
+open_system('sm_robot_run_4legs/Leg RR/Contact Force Model/Planar','force')
+
+%%
+% *Six Degree of Freedom Contact Model*
+%
+% This variant of the contact force model assumes the end of the leg is a
+% sphere and detects collision between the sphere and the surface of the
+% floor. It models contact and friction force between the sphere and the
+% plane.  It is valid for all six degrees of freedom.
+%
+% <matlab:open_system('sm_robot_run_4legs');open_system('sm_robot_run_4legs/Leg%20RR/Contact%20Force%20Model/SixDOF','force'); Open Subsystem>
+
+set_param('sm_robot_run_4legs/Leg RR/','popup_contact_model','Six DOF');
+open_system('sm_robot_run_4legs/Leg RR/Contact Force Model/SixDOF','force')
+
+
+%% Simulation Results from Simscape Logging
+%%
+%
+% The plot below shows the current drawn by the motor and supplied by the
+% battery as the robot runs.
+%
+set_param('sm_robot_run_4legs/Leg RR/','popup_contact_model','Planar');
+close_system('sm_robot_run_4legs/Leg RR/Contact Force Model/Planar')
+
+sm_robot_run_4legs_plot1current;
+
+%%
+
+bdclose all
+clear all
+close all
+
+##### SOURCE END #####
+--></body></html>
