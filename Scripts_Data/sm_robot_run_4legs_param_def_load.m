@@ -1,6 +1,6 @@
 function sm_robot_run_4legs_param_def_load(modelname)
 % Loads default parameters for running robot models
-% Copyright 2017 The MathWorks, Inc.
+% Copyright 2017-2018 The MathWorks, Inc.
 
 filename = 'sm_robot_run_4legs_param_def.mat';
 

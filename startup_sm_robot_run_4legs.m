@@ -1,5 +1,5 @@
 % Startup script for running robot example
-% Copyright 2012-2017 The MathWorks, Inc.
+% Copyright 2012-2018 The MathWorks, Inc.
 
 RR4_HomeDir = pwd;
 

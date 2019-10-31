@@ -11,7 +11,7 @@
 %
 % For details on the design process, see <matlab:web('sm_robot_run_limb_design.html'); Mechatronic Running Robot Limb Design>
 
-% Copyright 2012-2017 The MathWorks, Inc.
+% Copyright 2012-2018 The MathWorks, Inc.
 
 
 %% Model
