@@ -30,6 +30,8 @@ if (nargin == 0)
     hy = 0.8;
 end
 
+self_intersect_offset = hy/1000;
+
 if (nargin==0 ||nargin==7)
     showplot = 'plot';
 else
@@ -41,33 +43,30 @@ end
 tx = (lenX-(numHx*hx))/(numHx+1);
 ty = (lenY-(numHy*hy))/(numHy+1);
 
-self_intersect_offset = min(tx,ty)/100;
-
-
 xy_data = [...
     0     0;
     lenX  0;
-    lenX  ty;
-    tx    ty];
+    lenX  ty-self_intersect_offset;
+    tx    ty-self_intersect_offset];
 
 for j=1:numHy
     for i=1:numHx
         append_pts = [
-            tx*(i)+hx*(i-1) ty+(ty+hy)*(j-1)+self_intersect_offset;
+            tx*(i)+hx*(i-1) ty+(ty+hy)*(j-1);
             tx*(i)+hx*(i-1) ty+hy+(ty+hy)*(j-1);
             tx*(i)+hx*i     ty+hy+(ty+hy)*(j-1);
-            tx*(i)+hx*i     ty+(ty+hy)*(j-1)+self_intersect_offset;
+            tx*(i)+hx*i     ty+(ty+hy)*(j-1);
             ];
         xy_data = [xy_data;append_pts];
     end
     if(i==numHx)
         xy_data = [xy_data;
-            lenX hy*(j-1)+ty*j+self_intersect_offset;
-            lenX hy*j+ty*(j+1);
-            tx   hy*j+ty*(j+1)];
+            lenX hy*(j-1)+ty*j;
+            lenX hy*j+ty*(j+1)-self_intersect_offset;
+            tx   hy*j+ty*(j+1)-self_intersect_offset];
     end
     if(j==numHy)
-        xy_data=[xy_data;0 lenY];
+        xy_data=[xy_data;0 lenY-self_intersect_offset];
     end
 end
 
