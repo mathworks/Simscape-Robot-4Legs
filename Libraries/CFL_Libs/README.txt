@@ -37,7 +37,9 @@ Recommendations:
 
 
 #########  Release History  #########  
-v 4.1(R2018a)	Mar 2018       Tread example, walking robot example 
+v 4.1(R2018b)   Sep 2018       Updated v4.1 for R2018b
+
+     (R2018a)   Mar 2018       Tread example, walking robot example 
      (R2017b)
      (R2017a)   1. Adjusted Sphere to Belt Force (in 3D, Composite Forces)
      (R2016b)      Changed orientation of reference frame for the two
