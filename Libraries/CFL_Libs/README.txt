@@ -1,5 +1,5 @@
 Simscape Multibody Contact Forces Library
-Copyright 2014-2018 The MathWorks, Inc.
+Copyright 2014-2019 The MathWorks, Inc.
 
 This library contains contact force models for use with Simscape Multibody.
 They can be used for intermittent contact (parts bouncing off each other)
@@ -36,8 +36,24 @@ Recommendations:
        can also help.
 
 
-#########  Release History  #########  
+#########  Release History  #########
+v 4.1(R2019a)   Mar 2019       Updated v4.1 for R2019a
+                               Minor changes to accommodate physical signal units
+
+
+v 4.1(R2018b)   Nov 2018       Added two examples
+     (R2018a)   
+     (R2017b)   1. New example Caster_4_Whl.slx
+     (R2017a)      Models a four-wheel cart with casters on front wheels 
+     (R2016b)
+     (R2016a)   2. New example sm_build_spheres_in_sphere
+     (R2015b)      MATLAB code to automatically assemble a model that has 
+     (R2015a)      a user-defined number of spheres inside a sphere with
+                   contact forces between all inner spheres and between 
+                   inner spheres and outer sphere.
+
 v 4.1(R2018b)   Sep 2018       Updated v4.1 for R2018b
+                               All v4p1 have updated Extr_Data_Cam_Roller_Curve.m
 
      (R2018a)   Mar 2018       Tread example, walking robot example 
      (R2017b)

@@ -9,6 +9,6 @@ Run startup_sm_robot_run_4legs.m to begin.
 This sets up the path and opens the complete model.
 Hyperlinks in the models guide you to options in the model that you can explore.
 
-Copyright 2012-2018 The MathWorks, Inc.
+Copyright 2012-2019 The MathWorks, Inc.
 
 

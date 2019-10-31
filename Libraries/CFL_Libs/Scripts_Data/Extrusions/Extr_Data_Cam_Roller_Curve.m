@@ -2,8 +2,8 @@ function [xy_data] = Extr_Data_Cam_Roller_Curve(cam_xsec,roller_rad,inout,vararg
 %Extr_Data_Cam_Roller_Curve Produce curve data for a constraint that holds
 %a circular roller to an arbitrary cam profile
 %   [xy_data] = Extr_Data_Cam_Roller_Curve(cam_xsec,roller_rad,inout)
-%   This function returns x-y data for a cam formed from two circles
-%   that are connected by lines tangent to the circles.
+%   Produce curve data for a constraint that holds a circular roller to an
+%   arbitrary cam profile
 %
 %   You can specify:
 %       Outer profile of cam                   cam_xsec
@@ -18,7 +18,7 @@ function [xy_data] = Extr_Data_Cam_Roller_Curve(cam_xsec,roller_rad,inout,vararg
 %   add 'plot' as the final argument
 %   >> Extr_Data_Cam_Roller_Curve([sind(1:4:360)' 1.5*cosd(1:4:360)'],0.2,'Outside','plot')
 
-% Copyright 2017-2018 The MathWorks, Inc.
+% Copyright 2017-2019 The MathWorks, Inc.
 
 % Default data to show diagram
 if (nargin == 0)
@@ -41,32 +41,45 @@ else
     showplot = varargin;
 end
 
+% Assumes counterclockwise sequence of points
 if(strcmpi(inout,'inside'))
     normdir = -1;
 else
     normdir = 1;
 end
-    
 
 % Calculate path for roller constraint
-cam_radius = sqrt(cam_xsec(:,2).^2+cam_xsec(:,1).^2);                     
-cam_radius_delta = circshift((circshift(cam_radius, -2) - cam_radius)/2,1); 
+% Calculate vector along each line segment
+cam_segment_vec = [...
+    circshift(cam_xsec(:,1),-1) - cam_xsec(:,1)  ...
+    circshift(cam_xsec(:,2),-1) - cam_xsec(:,2)];
 
-cam_angles = unwrap(atan2(cam_xsec(:,2),cam_xsec(:,1)));                
-cosa = cos(cam_angles);                                           
-sina = sin(cam_angles);                                            
-cam_angles_delta = (circshift(cam_angles, -1) - cam_angles);
-cam_angles_delta(end) = cam_angles_delta(end)+2*pi;
+% Calculate length of each line segment
+cam_segment_length = sqrt(...
+    cam_segment_vec(:,1).^2 + cam_segment_vec(:,2).^2);
 
-d_camrad_dq = cam_radius_delta ./ cam_angles_delta;               
+% Calculate unit vector along each line segment
+cam_segment_uvec = cam_segment_vec./cam_segment_length;
 
-cam_tang_vec = [d_camrad_dq.*cosa d_camrad_dq.*sina] + [cam_radius.*-sina cam_radius.*cosa];
-cam_norm_vec = normdir*[cam_tang_vec(:,2) -cam_tang_vec(:,1)];
-cam_offset_curve = cam_xsec+[...
-    roller_rad*cam_norm_vec(:,1)./sqrt(cam_norm_vec(:,2).^2+cam_norm_vec(:,1).^2) ...
-    roller_rad*cam_norm_vec(:,2)./sqrt(cam_norm_vec(:,2).^2+cam_norm_vec(:,1).^2)];
+% Determine vector normal to line segment
+% Assumes counterclockwise sequence of points
+cam_segment_norm_uvec = normdir*[cam_segment_uvec(:,2) -cam_segment_uvec(:,1)]; 
 
-xy_data = cam_offset_curve;
+% Determine vector normal to curve at point
+% by adding normal vectors of adjacent line segments
+cam_point_norm_vec = cam_segment_norm_uvec+circshift(cam_segment_norm_uvec,-1);
+
+% Obtain length of vector normal to curve at point
+cam_point_norm_vec_length = sqrt(...
+    cam_point_norm_vec(:,1).^2 + cam_point_norm_vec(:,2).^2);
+
+% Obtain unit vector normal to curve at point
+cam_point_norm_uvec = cam_point_norm_vec./cam_point_norm_vec_length;
+
+% To each point on original curve, add a vector
+% that is normal to curve at point 
+% with length equal to radius of roller
+xy_data = cam_xsec + circshift(cam_point_norm_uvec,1)*roller_rad;
 
 % Plot diagram to show parameters and extrusion
 if (nargin == 0 || strcmpi(showplot,'plot'))
