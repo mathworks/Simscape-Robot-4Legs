@@ -1,5 +1,5 @@
 % Script to create new .mat file with default values
-% Copyright 2017-2019 The MathWorks, Inc.
+% Copyright 2017-2020 The MathWorks, Inc.
 
 clear
 sm_robot_run_script_design_limb

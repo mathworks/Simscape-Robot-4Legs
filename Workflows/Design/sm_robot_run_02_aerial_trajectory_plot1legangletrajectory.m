@@ -4,7 +4,7 @@
 % The plot below shows the trajectory of the leg angle during a gait
 % period.
 %
-% Copyright 2017-2019 The MathWorks, Inc.
+% Copyright 2017-2020 The MathWorks, Inc.
 
 % Generate simulation results if they don't exist
 sim('sm_robot_run_01_gait_selection')
