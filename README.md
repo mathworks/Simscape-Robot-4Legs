@@ -10,5 +10,4 @@ Open Robot_Run_4Legs.prj to begin.
 This sets up the path and opens the complete model.
 Hyperlinks in the models guide you to options in the model that you can explore.
 
-Copyright 2012-2020 The MathWorks, Inc.
 
