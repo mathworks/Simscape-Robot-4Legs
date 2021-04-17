@@ -1,5 +1,5 @@
 # **Running Robot Model in Simscape**
-Copyright 2012-2020 The MathWorks(TM), Inc.
+Copyright 2012-2021 The MathWorks(TM), Inc.
 
 [![View Running Robot Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/64237-running-robot-model-in-simscape)
 
