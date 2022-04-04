@@ -6,7 +6,7 @@
 % "sm_robot_run_4legs.slx".
 %
 % R A Hyde
-% Copyright 2008-2021 The MathWorks 
+% Copyright 2008-2022 The MathWorks 
 
 %% Generate nominal gait, leg length and payload mass
 
