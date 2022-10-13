@@ -19,7 +19,7 @@ load('sm_robot_run_4legs_param_def')
 
 open_system('sm_robot_run_4legs')
 
-set_param(find_system('sm_robot_run_4legs','FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
+set_param(find_system('sm_robot_run_4legs','MatchFilter',@Simulink.match.allVariants,'FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
 
 %% 
 % <<sm_robot_run_4legs_mechExp_anim.gif>>

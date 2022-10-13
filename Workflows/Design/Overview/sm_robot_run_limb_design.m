@@ -49,7 +49,7 @@ load('sm_robot_run_4legs_param_def')
 
 open_system('sm_robot_run_01_gait_selection')
 
-set_param(find_system('sm_robot_run_01_gait_selection','FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
+set_param(find_system('sm_robot_run_01_gait_selection','MatchFilter',@Simulink.match.allVariants,'FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
 
 %% 
 % The plot below shows the phases of leg motion during a single step. It
@@ -87,7 +87,7 @@ sm_robot_run_01_gait_selection_plot2gaitsweep
 
 open_system('sm_robot_run_02_aerial_trajectory')
 
-set_param(find_system('sm_robot_run_02_aerial_trajectory','FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
+set_param(find_system('sm_robot_run_02_aerial_trajectory','MatchFilter',@Simulink.match.allVariants,'FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
 
 %% 
 % The plot below shows the trajectory of the leg angle during a gait
@@ -104,7 +104,7 @@ sm_robot_run_02_aerial_trajectory_plot1legangletrajectory
 
 open_system('sm_robot_run_03_leg_inverse_dyn')
 
-set_param(find_system('sm_robot_run_03_leg_inverse_dyn','FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
+set_param(find_system('sm_robot_run_03_leg_inverse_dyn','MatchFilter',@Simulink.match.allVariants,'FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
 
 %% 
 % The plot below shows the required actuator torques at the hip and knee
@@ -129,7 +129,7 @@ sm_robot_run_03_leg_inverse_dyn_plot1trq
 
 open_system('sm_robot_run_04_actuator')
 
-set_param(find_system('sm_robot_run_04_actuator','FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
+set_param(find_system('sm_robot_run_04_actuator','MatchFilter',@Simulink.match.allVariants,'FindAll', 'on','type','annotation','Tag','ModelFeatures'),'Interpreter','off')
 
 %% 
 % The plot below shows the current drawn by the load and the contribution
