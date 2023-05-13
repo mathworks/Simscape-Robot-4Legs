@@ -6,7 +6,7 @@
 % launch and land angles.  This information is used to compute the angle
 % trajectories for leg joints.
 %
-% Copyright 2017-2022 The MathWorks, Inc.
+% Copyright 2017-2023 The MathWorks, Inc.
 
 % Generate simulation results if they don't exist
 if ~exist('logsout_sm_robot_run_01_gait_selection', 'var')

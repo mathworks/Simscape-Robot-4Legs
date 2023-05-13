@@ -1,5 +1,5 @@
 % Script for testing main model and publishing results
-% Copyright 2012-2022 The MathWorks, Inc.
+% Copyright 2012-2023 The MathWorks, Inc.
 
 % List models with publish scripts that have the same name
 mdl_list = {...
