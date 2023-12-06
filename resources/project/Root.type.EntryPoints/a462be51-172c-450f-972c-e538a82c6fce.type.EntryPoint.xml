@@ -1,2 +1,2 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<Info Type="StartUp" Visible="0" Icon="" File="Scripts_Data/startup_sm_robot_run_4legs.m" Name="startup_sm_robot_run_4legs"/>
+<Info File="Scripts_Data/startup_sm_robot_run_4legs.m" Icon="" Name="startup_sm_robot_run_4legs" Type="StartUp" Visible="0"/>
