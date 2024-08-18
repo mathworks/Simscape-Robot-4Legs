@@ -2,7 +2,7 @@ function sm_robot_run_4legs_setconstraints(modelname,option)
 % Function to change constraints for robot body, camera, and contact force
 % model based on desired degrees of freedom for running robot.
 %
-% Copyright 2017-2023 The MathWorks, Inc.
+% Copyright 2017-2024 The MathWorks, Inc.
 
 switch (lower(option))
     case 'planar'

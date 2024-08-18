@@ -7,7 +7,7 @@
 %
 % The resulting design is shown in <matlab:web('sm_robot_run_4legs.html'); Mechatronic Running Robot>
 %
-% Copyright 2012-2023 The MathWorks, Inc.
+% Copyright 2012-2024 The MathWorks, Inc.
 
 %% Step 1: Gait Selection
 %
