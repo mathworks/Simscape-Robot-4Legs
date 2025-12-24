@@ -6,7 +6,7 @@
 % floor.  A deeper crouch and a stiffer spring will lead to a higher leap
 % and less time spent on the floor.
 %
-% Copyright 2017-2024 The MathWorks, Inc.
+% Copyright 2017-2025 The MathWorks, Inc.
 
 %% Get simulation results
 
